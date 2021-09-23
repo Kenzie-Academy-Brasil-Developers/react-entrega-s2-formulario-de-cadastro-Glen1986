@@ -1,14 +1,20 @@
 import { useForm } from 'react-hook-form';
+import { useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { yupResolver }from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+//import axios from 'axios';
 import './styles.css'
 
-const FormLogin =()=>{
-  
+const FormLogin =({nome, setNome})=>{
+
+ const [email, setEmail] = useState("")
+ const [password, setPassword] = useState("")
+ const [confPassword, setConfPassword] = useState("");
+ const [isLogged, setIsLogged] = useState()
+
   const history = useHistory()
 
   const schema = yup.object().shape({
@@ -22,21 +28,36 @@ const FormLogin =()=>{
     register, 
     handleSubmit, 
     formState: {errors}, 
-  } = useForm({resolver: yupResolver(schema)})
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
 
   const handleForm =(data)=>{
-     console.log(data)
-   // axios.post("https://kenziehub.s3.amazonaws.com/requests_kenziehub.json", data)
-    axios.post("https://kenziehub.herokuapp/sessions", data)
-      .then(response =>{
-        console.log(response)
-        history.push("/home");
-      })
-      .catch((e) =>console.log(e));
+    setNome(
+    [nome, data.name]
+    )
+    setEmail(
+    [email, data.email]
+    )
+    setPassword(
+    [password, data.password]
+    )
+    setConfPassword(
+    [confPassword, data.confPassword]
+    )
   }
+ 
+  const handleLogin =()=>{
+    setIsLogged(true)
+    handleForm()
+  }
+     if(isLogged === true){
+    history.push("/home");
+  }
+    return(
 
-  return(
-      <form onSubmit={handleSubmit(handleForm)}>
+      <form onSubmit={handleSubmit(handleLogin)}>
         <h2>KenzieCrew</h2>
         <div>
           <TextField
@@ -87,7 +108,7 @@ const FormLogin =()=>{
           />
           </div>
           <div>
-          <Button type="submit" variant="contained" color="primary">
+          <Button  type="submit" variant="contained" color="primary">
             Enviar
           </Button>
         </div>

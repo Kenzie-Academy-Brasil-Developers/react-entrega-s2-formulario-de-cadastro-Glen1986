@@ -1,8 +1,11 @@
 import FormLogin from '../../components/FormLogin'
-const Login = () =>{
+const Login = ({nome, setNome}) =>{
   return(
   <>
-    <FormLogin />
+    <FormLogin 
+      name={nome}
+      setName={setNome}
+    />
   </>
   );
 };
