@@ -7,7 +7,7 @@ const Home =({ nome, setNome, isLogged, setIsLogged})=>{
           isLogged={isLogged}
           setIsLogged={setIsLogged}
           nome={nome}
-          setName={setNome}
+          setNome={setNome}
         />
       </div>
     </>

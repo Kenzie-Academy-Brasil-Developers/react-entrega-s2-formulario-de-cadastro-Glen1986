@@ -8,12 +8,12 @@ import { useHistory } from 'react-router-dom';
 //import axios from 'axios';
 import './styles.css'
 
-const FormLogin =({nome, setNome})=>{
+const FormLogin =({nome, setNome, isLogged, setIsLogged})=>{
 
  const [email, setEmail] = useState("")
  const [password, setPassword] = useState("")
  const [confPassword, setConfPassword] = useState("");
- const [isLogged, setIsLogged] = useState()
+ //const [isLogged, setIsLogged] = useState()
 
   const history = useHistory()
 
@@ -33,7 +33,15 @@ const FormLogin =({nome, setNome})=>{
   });
 
 
-  const handleForm =(data)=>{
+/*  const handleForm =(data)=>{
+
+
+  }
+  */
+  const handleLogin =(data)=>{
+    setIsLogged([isLogged = true])
+ //   handleForm()
+    console.log(data)
     setNome(
     [nome, data.name]
     )
@@ -46,11 +54,7 @@ const FormLogin =({nome, setNome})=>{
     setConfPassword(
     [confPassword, data.confPassword]
     )
-  }
- 
-  const handleLogin =()=>{
-    setIsLogged(true)
-    handleForm()
+    console.log(isLogged)
   }
      if(isLogged === true){
     history.push("/home");

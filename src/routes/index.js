@@ -11,15 +11,15 @@ const Routes =({nome, setNome, isLogged, setIsLogged})=>{
           isLogged= {isLogged}
           setIsLogged={setIsLogged}
           nome={nome}
-          setName={setNome}
+          setNome={setNome}
         />
       </Route>
       <Route exact path ="/home">
         <Home
           isLogged= {isLogged}
           setIsLogged={setIsLogged}
-          name={nome}
-          setName={setNome}          
+          nome={nome}
+          setNome={setNome}          
         />
       </Route>
     </Switch>
